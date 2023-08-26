@@ -18,29 +18,23 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const user_1 = require("../models/user");
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
-    // Validamos si el usuario ya existe en la BD,
     const userDB = yield user_1.User.findOne({ where: { username: username } });
     if (userDB) {
-        // return para que no continue la ejecucion
         return res.status(400).json({
             msg: `Ya existe un usuario con el nombre de usuario ${username}`
         });
     }
-    // Encriptamos el passxord
     const hashPassword = yield bcrypt_1.default.hash(password, 10);
     try {
-        // Guardando en la BD
         yield user_1.User.create({
             username: username,
             password: hashPassword
         });
-        // Respuesta al usuario en caso de exito
         res.json({
             msg: `Usuario ${username} creado exitosamente`
         });
     }
     catch (error) {
-        // Respuesta al usuario en cado de erroe
         res.status(500).json({
             msg: "Opps, ocurrió un error",
             error
@@ -50,23 +44,18 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.createUser = createUser;
 const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
-    // Validamos si el usuario existe en la BD,
     const userDB = yield user_1.User.findOne({ where: { username: username } });
     if (!userDB) {
-        // return para que no continue la ejecucion
         return res.status(400).json({
             msg: `El usuario ${username} no está registrado`
         });
     }
-    // Validamos que el password es correcto para el ususario que ya sé que existe
     const passValid = yield bcrypt_1.default.compare(password, userDB.password);
-    // Si el password no es valido
     if (!passValid) {
         return res.status(400).json({
             msg: `Las credenciales de usuario son incorrectas`
         });
     }
-    // Si las credenciales son correctas, generamos el web token para el usuario
     const token = jsonwebtoken_1.default.sign({
         username: username
     }, process.env.SECRET_KEY || "pepito123");

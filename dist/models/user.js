@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-// user es el nombre del modelo que sera usado por sequelize para crear el nombre de
-// la tabla, incluyendole la letra "s", es decir "users"
 exports.User = connection_1.default.define("user", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,

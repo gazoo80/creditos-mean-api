@@ -6,11 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Customer = void 0;
 const sequelize_1 = require("sequelize");
 const connection_1 = __importDefault(require("../db/connection"));
-// user es el nombre del modelo que sera usado por sequelize para crear el nombre de
-// la tabla, incluyendole la letra "s", es decir "users". Podemos agregar un tercer parametro
-// al metodo define(), que serian opciones como por ejemplo que no nos cree las columnas 
-// de auditoria createdAt u updateAt
-// { createdAt: false, updateAt: false }
 exports.Customer = connection_1.default.define("customer", {
     id: {
         type: sequelize_1.DataTypes.INTEGER,

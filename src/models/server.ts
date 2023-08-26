@@ -15,22 +15,16 @@ class Server {
     private port: string;
 
     constructor() {
-        // Creamos el servidor express
         this.app = express();
         
         this.port = process.env.PORT || "3001";
 
-        // Levantando el servidor en el puerto correspondiente
         this.listen();
 
-        // Creando las tablas que aun no han sido creadas en la BD
         this.createTablesDB();
 
-        // Para poder parsear el body en las peticiones POST.
-        // Es importante que este en esta posicion
         this.middlewares();
 
-        // Inicializamos las rutas
         this.routes();
     }
 
@@ -47,16 +41,12 @@ class Server {
     }
 
     middlewares() {
-        // parseo del body
         this.app.use(express.json());
-
-        // Configuracion de CORS
         this.app.use(cors());
     }
 
     async createTablesDB() {
         try {
-            // Con sync() creamos la tabla si no existe
             await Product.sync();
             await User.sync();
             await Customer.sync();
@@ -67,4 +57,4 @@ class Server {
     }
 }
 
-export default Server // No seran neceasrias las llaves en la importacion
+export default Server

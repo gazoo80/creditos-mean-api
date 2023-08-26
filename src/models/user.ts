@@ -2,8 +2,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/connection";
 
-// user es el nombre del modelo que sera usado por sequelize para crear el nombre de
-// la tabla, incluyendole la letra "s", es decir "users"
 export const User = sequelize.define("user", {
     id: {
         type: DataTypes.INTEGER,

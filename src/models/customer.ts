@@ -2,12 +2,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/connection";
 
-// user es el nombre del modelo que sera usado por sequelize para crear el nombre de
-// la tabla, incluyendole la letra "s", es decir "users". Podemos agregar un tercer parametro
-// al metodo define(), que serian opciones como por ejemplo que no nos cree las columnas 
-// de auditoria createdAt u updateAt
-// { createdAt: false, updateAt: false }
-
 export const Customer = sequelize.define("customer", {
     id: {
         type: DataTypes.INTEGER,

@@ -9,8 +9,6 @@ export const getCustomers = async (req: Request, res: Response) => {
 
 export const getCustomer = async (req: Request, res: Response) => {
 
-    console.log(req.params.id);
-
     const { id } = req.params;
 
     const customer = await Customer.findByPk(id);
@@ -25,8 +23,6 @@ export const getCustomer = async (req: Request, res: Response) => {
 };
 
 export const deleteCustomer = async (req: Request, res: Response) => {
-
-    console.log(req.params.id);
 
     const { id } = req.params;
 
@@ -46,8 +42,6 @@ export const deleteCustomer = async (req: Request, res: Response) => {
 };
 
 export const createCustomer = async (req: Request, res: Response) => {
-
-    console.log(req.body);
 
     const { body } = req;
 
@@ -69,9 +63,6 @@ export const updateCustomer = async (req: Request, res: Response) => {
 
     const { body } = req;
     const { id } = req.params;
-
-    console.log(body);
-    console.log(id);
 
     try {
         const customer = await Customer.findByPk(id);

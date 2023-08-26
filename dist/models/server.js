@@ -22,17 +22,11 @@ const user_2 = require("./user");
 const customer_2 = require("./customer");
 class Server {
     constructor() {
-        // Creamos el servidor express
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || "3001";
-        // Levantando el servidor en el puerto correspondiente
         this.listen();
-        // Creando las tablas que aun no han sido creadas en la BD
         this.createTablesDB();
-        // Para poder parsear el body en las peticiones POST.
-        // Es importante que este en esta posicion
         this.middlewares();
-        // Inicializamos las rutas
         this.routes();
     }
     listen() {
@@ -46,15 +40,12 @@ class Server {
         this.app.use("/api/customers", customer_1.default);
     }
     middlewares() {
-        // parseo del body
         this.app.use(express_1.default.json());
-        // Configuracion de CORS
         this.app.use((0, cors_1.default)());
     }
     createTablesDB() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                // Con sync() creamos la tabla si no existe
                 yield product_2.Product.sync();
                 yield user_2.User.sync();
                 yield customer_2.Customer.sync();
@@ -66,4 +57,4 @@ class Server {
         });
     }
 }
-exports.default = Server; // No seran neceasrias las llaves en la importacion
+exports.default = Server;

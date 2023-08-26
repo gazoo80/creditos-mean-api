@@ -17,7 +17,6 @@ const getCustomers = (req, res) => __awaiter(void 0, void 0, void 0, function* (
 });
 exports.getCustomers = getCustomers;
 const getCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params.id);
     const { id } = req.params;
     const customer = yield customer_1.Customer.findByPk(id);
     if (!customer) {
@@ -29,7 +28,6 @@ const getCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getCustomer = getCustomer;
 const deleteCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.params.id);
     const { id } = req.params;
     const customer = yield customer_1.Customer.findByPk(id);
     if (!customer) {
@@ -44,7 +42,6 @@ const deleteCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function*
 });
 exports.deleteCustomer = deleteCustomer;
 const createCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.body);
     const { body } = req;
     try {
         yield customer_1.Customer.create(body);
@@ -63,8 +60,6 @@ exports.createCustomer = createCustomer;
 const updateCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { body } = req;
     const { id } = req.params;
-    console.log(body);
-    console.log(id);
     try {
         const customer = yield customer_1.Customer.findByPk(id);
         if (!customer) {
