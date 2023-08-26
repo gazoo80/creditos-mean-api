@@ -1,8 +1,13 @@
 
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("sql10638850", "sql10638850", "vYbjgg4Qlj", {
-    host: "sql10.freesqldatabase.com",
+const host: string = process.env.HOST || "localhost"
+const database: string = process.env.DATABASE || "api"
+const username: string = process.env.USERNAME || "root"
+const password: string = process.env.PASSWORD || "admin"
+
+const sequelize = new Sequelize(database, username, password, {
+    host: host,
     dialect: "mysql"
 });
 
